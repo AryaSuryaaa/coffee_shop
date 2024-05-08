@@ -1,5 +1,7 @@
 import 'package:coffe_shop/widget/detail_screen.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 
 import '../model/coffee.dart';
 
@@ -9,112 +11,415 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
     return Scaffold(
-      body: SafeArea(
-        child: SingleChildScrollView(
-          child: Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                const Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    CircleAvatar(
-                      radius: 18,
-                      backgroundImage: AssetImage('images/coffee-animation.jpg'),
-                    ),
-                    Row(
-                      children: [
-                        Icon(Icons.place, color: Colors.green,),
-                        Text('Indonesia')
-                      ],
-                    ),
-                    Icon(Icons.notifications, color: Colors.green,)
-                  ],
-                ),
-                const SizedBox(height: 18,),
-                const SizedBox(
-                  width: 250,
-                  child: Text(
-                    'Find the best coffee for you',
-                    style: TextStyle(
+      body: LayoutBuilder(
+        builder: (BuildContext context, BoxConstraints constraints) {
+          if (constraints.maxWidth <= 600) {
+            return const MobileSC();
+          } else if (constraints.maxWidth <= 1200) {
+            return const MobileSC2();
+          } else {
+            return const MobileSC3();
+          }
+        },
+      ),
+    );
+  }
+}
+
+class MobileSC extends StatelessWidget {
+  const MobileSC({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    // TODO: implement build
+    return SafeArea(
+      child: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  CircleAvatar(
+                    radius: 18,
+                    backgroundImage: AssetImage('images/coffee-animation.jpg'),
+                  ),
+                  Row(
+                    children: [
+                      Icon(Icons.place, color: Colors.green,),
+                      Text('Indonesia')
+                    ],
+                  ),
+                  Icon(Icons.notifications, color: Colors.green,)
+                ],
+              ),
+              const SizedBox(height: 18,),
+              const SizedBox(
+                width: 250,
+                child: Text(
+                  'Find the best coffee for you',
+                  style: TextStyle(
                       fontSize: 24,
                       color: Colors.green,
                       fontWeight: FontWeight.bold
-                    ),
                   ),
                 ),
-                const SizedBox(height: 18,),
-                Container(
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(20),
-                  ),
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 4.0, horizontal: 8.0),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        const Row(
-                          children: [
-                            Icon(Icons.search),
-                            SizedBox(width: 6,),
-                            Text('Search Coffee', style: TextStyle(color: Colors.grey),)
-                          ],
-                        ),
-                        CircleAvatar(
-                          backgroundColor: Colors.green,
-                          child: IconButton(
-                            icon: const Icon(
-                              Icons.filter_list_off_outlined,
-                              color: Colors.white,
-                            ),
-                            onPressed: () {  },
+              ),
+              const SizedBox(height: 18,),
+              Container(
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(20),
+                ),
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 4.0, horizontal: 8.0),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      const Row(
+                        children: [
+                          Icon(Icons.search),
+                          SizedBox(width: 6,),
+                          Text('Search Coffee', style: TextStyle(color: Colors.grey),)
+                        ],
+                      ),
+                      CircleAvatar(
+                        backgroundColor: Colors.green,
+                        child: IconButton(
+                          icon: const Icon(
+                            Icons.filter_list_off_outlined,
+                            color: Colors.white,
                           ),
-                        )
-                      ],
-                    ),
+                          onPressed: () {  },
+                        ),
+                      )
+                    ],
                   ),
                 ),
-                const SizedBox(height: 18,),
-                ClipRRect(
+              ),
+              const SizedBox(height: 18,),
+              ClipRRect(
                   borderRadius: BorderRadius.circular(24),
                   child: Image.asset('images/banner.jpg', fit: BoxFit.cover,)),
-                const SizedBox(height: 18,),
-                const Text(
-                  'Recommendation',
-                  style: TextStyle(
-                      // fontSize: 24,
-                      // color: Colors.green,
-                      fontWeight: FontWeight.bold
-                  ),
+              const SizedBox(height: 18,),
+              const Text(
+                'Recommendation',
+                style: TextStyle(
+                  // fontSize: 24,
+                  // color: Colors.green,
+                    fontWeight: FontWeight.bold
                 ),
-                const SizedBox(height: 18,),
-                const SizedBox(
+              ),
+              const SizedBox(height: 18,),
+              const SizedBox(
                   height: 225,
-                    child: CoffeeListView()),
-                const SizedBox(height: 18,),
-                const Text(
-                  'All Coffee',
-                  style: TextStyle(
-                    // fontSize: 24,
-                    // color: Colors.green,
-                      fontWeight: FontWeight.bold
-                  ),
+                  child: CoffeeListView()),
+              const SizedBox(height: 18,),
+              const Text(
+                'All Coffee',
+                style: TextStyle(
+                  // fontSize: 24,
+                  // color: Colors.green,
+                    fontWeight: FontWeight.bold
                 ),
-                const SizedBox(height: 18,),
-                const SizedBox(
-                    height: 225,
-                    child: CoffeeListView())
-              ],
-            ),
+              ),
+              const SizedBox(height: 18,),
+              const SizedBox(
+                  height: 225,
+                  child: CoffeeListView())
+            ],
           ),
         ),
       ),
     );
   }
+
+}
+
+class MobileSC2 extends StatelessWidget {
+  const MobileSC2({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return SafeArea(
+      child: SingleChildScrollView(
+        scrollDirection: Axis.vertical,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Container(
+              decoration: BoxDecoration(
+                  color: Colors.green
+              ),
+              child: Padding(
+                padding: const EdgeInsets.symmetric(vertical: 16.0, horizontal: 100),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      'Coffee Shop',
+                      style: TextStyle(
+                          fontSize: 24,
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold
+                      ),
+                    ),
+                    // Row(
+                    //   children: [
+                    //     Icon(Icons.place, color: Colors.green,),
+                    //     Text('Indonesia')
+                    //   ],
+                    // ),
+                    CircleAvatar(
+                      radius: 18,
+                      backgroundImage: AssetImage('images/coffee-animation.jpg'),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+            Container(
+              margin: EdgeInsetsDirectional.symmetric(vertical: 8, horizontal: 100),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const SizedBox(height: 18,),
+                  const SizedBox(
+                    // width: 250,
+                    child: Text(
+                      'Find the best coffee for you',
+                      style: TextStyle(
+                          fontSize: 24,
+                          color: Colors.green,
+                          fontWeight: FontWeight.bold
+                      ),
+                    ),
+                  ),
+                  const SizedBox(height: 18,),
+                  Container(
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(20),
+                    ),
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 4.0, horizontal: 8.0),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          const Row(
+                            children: [
+                              Icon(Icons.search),
+                              SizedBox(width: 6,),
+                              Text('Search Coffee', style: TextStyle(color: Colors.grey),)
+                            ],
+                          ),
+                          CircleAvatar(
+                            backgroundColor: Colors.green,
+                            child: IconButton(
+                              icon: const Icon(
+                                Icons.filter_list_off_outlined,
+                                color: Colors.white,
+                              ),
+                              onPressed: () {  },
+                            ),
+                          )
+                        ],
+                      ),
+                    ),
+                  ),
+                  const SizedBox(height: 18,),
+                  ClipRRect(
+                      borderRadius: BorderRadius.circular(24),
+                      child: Image.asset('images/banner.jpg', fit: BoxFit.cover,)),
+                  const SizedBox(height: 18,),
+                  const Text(
+                    'Recommendation',
+                    style: TextStyle(
+                        fontWeight: FontWeight.bold
+                    ),
+                  ),
+
+                  const SizedBox(height: 18,),
+                  const SizedBox(
+                      height: 225,
+                      child: CoffeeListView()),
+                  const SizedBox(height: 18,),
+                  const Text(
+                    'All Coffee',
+                    style: TextStyle(
+                        fontWeight: FontWeight.bold
+                    ),
+                  ),
+                  const SizedBox(height: 18,),
+                  const SizedBox(
+                      height: 225,
+                      child: CoffeeListView())
+                ],
+              ),
+            )
+
+          ],
+        ),
+      ),
+    );
+  }
+
+}
+
+class MobileSC3 extends StatelessWidget {
+  const MobileSC3({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return SafeArea(
+      child: SingleChildScrollView(
+        scrollDirection: Axis.vertical,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Container(
+              decoration: const BoxDecoration(
+                  color: Colors.green
+              ),
+              child: const Padding(
+                padding: EdgeInsets.symmetric(vertical: 16.0, horizontal: 100),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      'Coffee Shop',
+                      style: TextStyle(
+                          fontSize: 24,
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold
+                      ),
+                    ),
+                    // Row(
+                    //   children: [
+                    //     Icon(Icons.place, color: Colors.green,),
+                    //     Text('Indonesia')
+                    //   ],
+                    // ),
+                    CircleAvatar(
+                      radius: 18,
+                      backgroundImage: AssetImage('images/coffee-animation.jpg'),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+            Container(
+              margin: EdgeInsetsDirectional.symmetric(vertical: 8, horizontal: 100),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const SizedBox(height: 18,),
+                  const SizedBox(
+                    // width: 250,
+                    child: Text(
+                      'Find the best coffee for you',
+                      style: TextStyle(
+                          fontSize: 24,
+                          color: Colors.green,
+                          fontWeight: FontWeight.bold
+                      ),
+                    ),
+                  ),
+                  const SizedBox(height: 18,),
+                  Container(
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(20),
+                    ),
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 4.0, horizontal: 8.0),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          const Row(
+                            children: [
+                              Icon(Icons.search),
+                              SizedBox(width: 6,),
+                              Text('Search Coffee', style: TextStyle(color: Colors.grey),)
+                            ],
+                          ),
+                          CircleAvatar(
+                            backgroundColor: Colors.green,
+                            child: IconButton(
+                              icon: const Icon(
+                                Icons.filter_list_off_outlined,
+                                color: Colors.white,
+                              ),
+                              onPressed: () {  },
+                            ),
+                          )
+                        ],
+                      ),
+                    ),
+                  ),
+                  const SizedBox(height: 18,),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Expanded(
+                        flex: 2,
+                        child: ClipRRect(
+                            borderRadius: BorderRadius.circular(24),
+                            child: Image.asset('images/banner.jpg', fit: BoxFit.cover,)),
+                      ),
+                      SizedBox(width: 10,),
+                      Expanded(
+                        flex: 1,
+                        child: Column(
+                          children: [
+                            ClipRRect(
+                                borderRadius: BorderRadius.circular(24),
+                                child: Image.asset('images/banner.jpg', fit: BoxFit.cover,)),
+                            SizedBox(height: 8,),
+                            ClipRRect(
+                                borderRadius: BorderRadius.circular(24),
+                                child: Image.asset('images/banner.jpg', fit: BoxFit.cover,)),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
+                  const SizedBox(height: 18,),
+                  const Text(
+                    'Recommendation',
+                    style: TextStyle(
+                        fontWeight: FontWeight.bold
+                    ),
+                  ),
+
+                  const SizedBox(height: 18,),
+                  const SizedBox(
+                      height: 225,
+                      child: CoffeeListView()),
+                  const SizedBox(height: 18,),
+                  const Text(
+                    'All Coffee',
+                    style: TextStyle(
+                        fontWeight: FontWeight.bold
+                    ),
+                  ),
+                  const SizedBox(height: 18,),
+                  const SizedBox(
+                      height: 225,
+                      child: CoffeeListView())
+                ],
+              ),
+            )
+
+          ],
+        ),
+      ),
+    );
+  }
+
 }
 
 class CoffeeListView extends StatelessWidget {
@@ -220,154 +525,3 @@ class CoffeeListView extends StatelessWidget {
 
 }
 
-class CoffeeListGrid extends StatelessWidget {
-  final int gridCount;
-  const CoffeeListGrid({super.key, required this.gridCount});
-
-  @override
-  Widget build(BuildContext context) {
-    return GridView.count(
-      crossAxisCount: 2,
-      children: coffeeList.map((coffee) {
-        return InkWell(
-          onTap: () {},
-          child: Container(
-            decoration: BoxDecoration(
-                color: Colors.white,
-                border: Border.all(color: Colors.grey, width: 0.5),
-                borderRadius: BorderRadius.circular(20),
-                boxShadow: const [
-                  BoxShadow(
-                      color: Colors.grey,
-                      offset: Offset(1,1),
-                      blurRadius: 4
-                  )
-                ]
-            ),
-            child: Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  ClipRRect(
-                      borderRadius: BorderRadius.circular(24),
-                      child: Image.asset(coffee.image, height: 80, fit: BoxFit.cover,)
-                  ),
-                  Text(
-                    coffee.name,
-                    style: const TextStyle(
-                        color: Colors.green,
-                        fontWeight: FontWeight.bold,
-                        fontSize: 18
-                    ),
-                  ),
-                  Text(
-                    coffee.subName,
-                    style: const TextStyle(
-                        color: Colors.grey,
-                        // fontWeight: FontWeight.bold,
-                        fontSize: 11
-                    ),
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Row(
-                        children: [
-                          const Text(
-                            '\$',
-                            style: TextStyle(
-                                color: Colors.green,
-                                fontWeight: FontWeight.bold,
-                                fontSize: 18
-                            ),
-                          ),
-                          Text(
-                            coffee.price,
-                            style: const TextStyle(
-                                fontWeight: FontWeight.bold,
-                                fontSize: 18
-                            ),
-                          ),
-                        ],
-                      ),
-                      // ElevatedButton(onPressed: () {}, child: Icon(Icons.add), style: ButtonStyle(backgroundColor: MaterialStateProperty.all(Colors.green),),)
-                      IconButton(
-                        onPressed: () {},
-                        icon: const Icon(Icons.add),
-                        tooltip: 'add',
-                        style: ButtonStyle(
-                            iconColor: MaterialStateProperty.all(Colors.white),
-                            backgroundColor: MaterialStateProperty.all(Colors.green),
-                            shape: MaterialStateProperty.all(
-                                RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(15)
-                                )
-                            )
-                        ),
-                      )
-                    ],
-                  )
-                ],
-              ),
-            ),
-          ),
-        );
-      }).toList(),
-    );
-  }
-
-}
-
-class TourismPlaceGrid extends StatelessWidget {
-  final int gridCount;
-  const TourismPlaceGrid({super.key, required this.gridCount});
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(24.0),
-      child: GridView.count(
-        crossAxisCount: gridCount,
-        crossAxisSpacing: 4,
-        mainAxisSpacing: 4,
-        children: coffeeList.map((place) {
-          return InkWell(
-            onTap: () {
-            },
-            child: Card(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                children: [
-                  Expanded(
-                    child: Image.asset(
-                      place.image,
-                      fit: BoxFit.cover,
-                    ),
-                  ),
-                  const SizedBox(height: 0),
-                  Padding(
-                    padding: const EdgeInsets.only(left: 8.0),
-                    child: Text(
-                      place.name,
-                      style: const TextStyle(
-                          fontSize: 16.0,
-                          fontWeight: FontWeight.bold
-                      ),
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(left: 8.0, bottom: 8.0),
-                    child: Text(
-                        place.subName
-                    ),
-                  )
-                ],
-              ),
-            ),
-          );
-        }).toList(),
-      ),
-    );
-  }
-}
