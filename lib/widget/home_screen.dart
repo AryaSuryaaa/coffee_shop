@@ -18,24 +18,24 @@ class HomeScreen extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Row(
+                const Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     CircleAvatar(
                       radius: 18,
                       backgroundImage: AssetImage('images/coffee-animation.jpg'),
                     ),
-                    const Row(
+                    Row(
                       children: [
                         Icon(Icons.place, color: Colors.green,),
                         Text('Indonesia')
                       ],
                     ),
-                    const Icon(Icons.notifications, color: Colors.green,)
+                    Icon(Icons.notifications, color: Colors.green,)
                   ],
                 ),
-                SizedBox(height: 18,),
-                Container(
+                const SizedBox(height: 18,),
+                const SizedBox(
                   width: 250,
                   child: Text(
                     'Find the best coffee for you',
@@ -46,7 +46,7 @@ class HomeScreen extends StatelessWidget {
                     ),
                   ),
                 ),
-                SizedBox(height: 18,),
+                const SizedBox(height: 18,),
                 Container(
                   decoration: BoxDecoration(
                     color: Colors.white,
@@ -57,7 +57,7 @@ class HomeScreen extends StatelessWidget {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Row(
+                        const Row(
                           children: [
                             Icon(Icons.search),
                             SizedBox(width: 6,),
@@ -67,7 +67,7 @@ class HomeScreen extends StatelessWidget {
                         CircleAvatar(
                           backgroundColor: Colors.green,
                           child: IconButton(
-                            icon: Icon(
+                            icon: const Icon(
                               Icons.filter_list_off_outlined,
                               color: Colors.white,
                             ),
@@ -78,40 +78,34 @@ class HomeScreen extends StatelessWidget {
                     ),
                   ),
                 ),
-                SizedBox(height: 18,),
-                Container(
-                  child: ClipRRect(
-                    borderRadius: BorderRadius.circular(24),
-                    child: Image.asset('images/banner.jpg', fit: BoxFit.cover,))
-                ),
-                SizedBox(height: 18,),
-                Container(
-                  child: const Text(
-                    'Recommendation',
-                    style: TextStyle(
-                        // fontSize: 24,
-                        // color: Colors.green,
-                        fontWeight: FontWeight.bold
-                    ),
-                  ),
-                ),
-                SizedBox(height: 18,),
-                Container(
-                  height: 225,
-                    child: CoffeeListView()),
-                SizedBox(height: 18,),
-                Container(
-                  child: Text(
-                    'All Coffee',
-                    style: TextStyle(
+                const SizedBox(height: 18,),
+                ClipRRect(
+                  borderRadius: BorderRadius.circular(24),
+                  child: Image.asset('images/banner.jpg', fit: BoxFit.cover,)),
+                const SizedBox(height: 18,),
+                const Text(
+                  'Recommendation',
+                  style: TextStyle(
                       // fontSize: 24,
                       // color: Colors.green,
-                        fontWeight: FontWeight.bold
-                    ),
+                      fontWeight: FontWeight.bold
                   ),
                 ),
-                SizedBox(height: 18,),
-                Container(
+                const SizedBox(height: 18,),
+                const SizedBox(
+                  height: 225,
+                    child: CoffeeListView()),
+                const SizedBox(height: 18,),
+                const Text(
+                  'All Coffee',
+                  style: TextStyle(
+                    // fontSize: 24,
+                    // color: Colors.green,
+                      fontWeight: FontWeight.bold
+                  ),
+                ),
+                const SizedBox(height: 18,),
+                const SizedBox(
                     height: 225,
                     child: CoffeeListView())
               ],
@@ -134,7 +128,7 @@ class CoffeeListView extends StatelessWidget {
       itemBuilder: (context, index) {
         final Coffee list = coffeeList[index];
         return Container(
-          margin: EdgeInsets.only(right: 8.0),
+          margin: const EdgeInsets.only(right: 8.0),
           child: InkWell(
             onTap: () {
               Navigator.push(context, MaterialPageRoute(builder: (context) {
@@ -159,7 +153,7 @@ class CoffeeListView extends StatelessWidget {
                     ),
                     Text(
                       list.name,
-                      style: TextStyle(
+                      style: const TextStyle(
                           color: Colors.green,
                           fontWeight: FontWeight.bold,
                           fontSize: 18
@@ -167,7 +161,7 @@ class CoffeeListView extends StatelessWidget {
                     ),
                     Text(
                       list.subName,
-                      style: TextStyle(
+                      style: const TextStyle(
                           color: Colors.grey,
                           // fontWeight: FontWeight.bold,
                           fontSize: 11
@@ -178,7 +172,7 @@ class CoffeeListView extends StatelessWidget {
                       children: [
                         Row(
                           children: [
-                            Text(
+                            const Text(
                               '\$',
                               style: TextStyle(
                                   color: Colors.green,
@@ -186,10 +180,10 @@ class CoffeeListView extends StatelessWidget {
                                   fontSize: 18
                               ),
                             ),
-                            SizedBox(width: 2,),
+                            const SizedBox(width: 2,),
                             Text(
                               list.price,
-                              style: TextStyle(
+                              style: const TextStyle(
                                   fontWeight: FontWeight.bold,
                                   fontSize: 18
                               ),
@@ -199,7 +193,7 @@ class CoffeeListView extends StatelessWidget {
                         // ElevatedButton(onPressed: () {}, child: Icon(Icons.add), style: ButtonStyle(backgroundColor: MaterialStateProperty.all(Colors.green),),)
                         IconButton(
                           onPressed: () {},
-                          icon: Icon(Icons.add),
+                          icon: const Icon(Icons.add),
                           tooltip: 'add',
                           style: ButtonStyle(
                               iconColor: MaterialStateProperty.all(Colors.white),
@@ -242,7 +236,7 @@ class CoffeeListGrid extends StatelessWidget {
                 color: Colors.white,
                 border: Border.all(color: Colors.grey, width: 0.5),
                 borderRadius: BorderRadius.circular(20),
-                boxShadow: [
+                boxShadow: const [
                   BoxShadow(
                       color: Colors.grey,
                       offset: Offset(1,1),
@@ -261,7 +255,7 @@ class CoffeeListGrid extends StatelessWidget {
                   ),
                   Text(
                     coffee.name,
-                    style: TextStyle(
+                    style: const TextStyle(
                         color: Colors.green,
                         fontWeight: FontWeight.bold,
                         fontSize: 18
@@ -269,7 +263,7 @@ class CoffeeListGrid extends StatelessWidget {
                   ),
                   Text(
                     coffee.subName,
-                    style: TextStyle(
+                    style: const TextStyle(
                         color: Colors.grey,
                         // fontWeight: FontWeight.bold,
                         fontSize: 11
@@ -280,7 +274,7 @@ class CoffeeListGrid extends StatelessWidget {
                     children: [
                       Row(
                         children: [
-                          Text(
+                          const Text(
                             '\$',
                             style: TextStyle(
                                 color: Colors.green,
@@ -290,7 +284,7 @@ class CoffeeListGrid extends StatelessWidget {
                           ),
                           Text(
                             coffee.price,
-                            style: TextStyle(
+                            style: const TextStyle(
                                 fontWeight: FontWeight.bold,
                                 fontSize: 18
                             ),
@@ -300,7 +294,7 @@ class CoffeeListGrid extends StatelessWidget {
                       // ElevatedButton(onPressed: () {}, child: Icon(Icons.add), style: ButtonStyle(backgroundColor: MaterialStateProperty.all(Colors.green),),)
                       IconButton(
                         onPressed: () {},
-                        icon: Icon(Icons.add),
+                        icon: const Icon(Icons.add),
                         tooltip: 'add',
                         style: ButtonStyle(
                             iconColor: MaterialStateProperty.all(Colors.white),

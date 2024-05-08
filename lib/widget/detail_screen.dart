@@ -16,7 +16,7 @@ class DetailScreen extends StatelessWidget {
 class DetailMobile extends StatefulWidget {
   final Coffee list;
 
-  const DetailMobile({Key? key, required this.list}) : super(key: key);
+  const DetailMobile({super.key, required this.list});
 
   @override
   _DetailMobileState createState() => _DetailMobileState();
@@ -46,7 +46,7 @@ class _DetailMobileState extends State<DetailMobile> {
                             CircleAvatar(
                               backgroundColor: Colors.white,
                               child: IconButton(
-                                icon: Icon(
+                                icon: const Icon(
                                     Icons.arrow_back
                                 ),
                                 onPressed: () {
@@ -54,7 +54,7 @@ class _DetailMobileState extends State<DetailMobile> {
                                 },
                               ),
                             ),
-                            CircleAvatar(
+                            const CircleAvatar(
                                 backgroundColor: Colors.white,
                                 child: FavoriteButton()
                             )
@@ -69,13 +69,13 @@ class _DetailMobileState extends State<DetailMobile> {
                         alignment: Alignment.topLeft,
                         transform: Matrix4.translationValues(0.0, -140.0, 0.0),
                         child: Container(
-                          margin: EdgeInsets.symmetric(horizontal: 16),
+                          margin: const EdgeInsets.symmetric(horizontal: 16),
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(
                                   widget.list.name,
-                                  style: TextStyle(
+                                  style: const TextStyle(
                                     color: Colors.white,
                                     fontSize: 28,
                                     fontWeight: FontWeight.bold,
@@ -83,13 +83,13 @@ class _DetailMobileState extends State<DetailMobile> {
                                 ),
                                 Text(
                                   widget.list.subName,
-                                  style: TextStyle(
+                                  style: const TextStyle(
                                     color: Colors.white,
                                     fontSize: 14,
                                     fontWeight: FontWeight.normal,
                                   ),
                                 ),
-                                SizedBox(height: 16,),
+                                const SizedBox(height: 16,),
                                 Container(
                                   width: 70,
                                   decoration: BoxDecoration(
@@ -101,10 +101,10 @@ class _DetailMobileState extends State<DetailMobile> {
                                     child: Row(
                                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                       children: [
-                                        Icon(Icons.star, color: Colors.yellow,),
+                                        const Icon(Icons.star, color: Colors.yellow,),
                                         Text(
                                           widget.list.rating,
-                                          style: TextStyle(
+                                          style: const TextStyle(
                                             color: Colors.white,
                                             fontSize: 14,
                                             fontWeight: FontWeight.normal,
@@ -120,7 +120,7 @@ class _DetailMobileState extends State<DetailMobile> {
                       Container(
                         transform: Matrix4.translationValues(0.0, -120.0, 0.0),
                         alignment: AlignmentDirectional.topStart,
-                        decoration: BoxDecoration(
+                        decoration: const BoxDecoration(
                           color: Colors.white,
                           borderRadius: BorderRadius.only(
                             topLeft: Radius.circular(20),
@@ -132,7 +132,7 @@ class _DetailMobileState extends State<DetailMobile> {
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Text(
+                              const Text(
                                 'Cup Size',
                                 style: TextStyle(
                                   color: Colors.green,
@@ -140,7 +140,7 @@ class _DetailMobileState extends State<DetailMobile> {
                                   fontWeight: FontWeight.bold,
                                 ),
                               ),
-                              SizedBox(height: 8,),
+                              const SizedBox(height: 8,),
                               Row(
                                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                 children: [
@@ -173,8 +173,8 @@ class _DetailMobileState extends State<DetailMobile> {
                                   ),
                                 ],
                               ),
-                              SizedBox(height: 8,),
-                              Text(
+                              const SizedBox(height: 8,),
+                              const Text(
                                 'Description',
                                 style: TextStyle(
                                   color: Colors.green,
@@ -182,7 +182,7 @@ class _DetailMobileState extends State<DetailMobile> {
                                   fontWeight: FontWeight.bold,
                                 ),
                               ),
-                              SizedBox(height: 8,),
+                              const SizedBox(height: 8,),
                               Text(
                                 widget.list.description,
                               ),
@@ -208,14 +208,14 @@ class _DetailMobileState extends State<DetailMobile> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text(
+                    const Text(
                       'Add to Cart',
                       style: TextStyle(
                         color: Colors.white,
                         fontSize: 14,
                       ),
                     ),
-                    Text(
+                    const Text(
                       '|',
                       style: TextStyle(
                         color: Colors.white,
@@ -223,8 +223,8 @@ class _DetailMobileState extends State<DetailMobile> {
                       ),
                     ),
                     Text(
-                      '\$  ' + widget.list.price,
-                      style: TextStyle(
+                      '\$  ${widget.list.price}',
+                      style: const TextStyle(
                         color: Colors.white,
                         fontSize: 14,
                       ),
@@ -248,24 +248,18 @@ class SizeButton extends StatelessWidget {
   final VoidCallback onPressed;
 
   const SizeButton({
-    Key? key,
+    super.key,
     required this.size,
     required this.activeButton,
     required this.onPressed,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
     return ElevatedButton(
       onPressed: activeButton == size ? null : onPressed,
-      child: Text(
-        size,
-        style: TextStyle(
-          color: activeButton == size ? Colors.white : Colors.black,
-        ),
-      ),
       style: ButtonStyle(
-        padding: MaterialStateProperty.all(EdgeInsets.symmetric(horizontal: 30)),
+        padding: MaterialStateProperty.all(const EdgeInsets.symmetric(horizontal: 30)),
         backgroundColor: MaterialStateProperty.resolveWith<Color>((Set<MaterialState> states) {
           if (activeButton == size) {
             return Colors.green;
@@ -274,6 +268,12 @@ class SizeButton extends StatelessWidget {
           }
           return Colors.grey.shade300;
         }),
+      ),
+      child: Text(
+        size,
+        style: TextStyle(
+          color: activeButton == size ? Colors.white : Colors.black,
+        ),
       ),
     );
   }
